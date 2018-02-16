@@ -9,8 +9,8 @@ const citySchema = new Schema({
 },{ collection: 'City' });
 
 citySchema.statics = {
-    getCitys: function (limit) {
-        return this.find({}).limit(limit).exec();
+    getCitys: function () {
+        return this.find({}).exec();
     },
     getCity: function (_id) {
         return this.find({ _id: _id }).exec();
