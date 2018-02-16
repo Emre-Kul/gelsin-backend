@@ -1,13 +1,14 @@
-# Gelsin BG-HACKATHON-18 backend
-### Team and Project Name
+# Gelsin (BG-HACKATHON-18 backend)
+An application which the customers can give order from nearby shops.
 
-Gelsin
+## Features
+* The customer can see nearby shops in a map.
+* The customer can see shop products by selecting nearby shops in the map.
+* The customer can give an order by preparing shopping list.
 
-### Team members
+* The owner of a shop can sell their products by adding his/her shop to Gelsin.
+* The owner of a shop can see other products to add new products for his/her shop. 
 
-* **Emre Kul**
-* **Ramazan Vapurcu**
-
-### Project 
-
-We will update readme for this.
+## Team Members
+* Emre Kul
+* Ramazan Vapurcu
