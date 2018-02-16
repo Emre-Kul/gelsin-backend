@@ -16,7 +16,7 @@ const shopSchema = new Schema({
 
 shopSchema.statics = {
     getShops: function () {
-        return this.find({}).exec();
+        return this.find({}).populate('ShopCategory').exec();
     },
     getShop: function (_id) {
         return this.find({ _id: _id }).exec();
