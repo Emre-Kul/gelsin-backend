@@ -5,8 +5,8 @@ Gelsin
 
 ### Team members
 
-Emre Kul
-Ramazan Vapurcu
+* **Emre Kul**
+* **Ramazan Vapurcu**
 
 ### Project 
 
