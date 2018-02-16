@@ -6,6 +6,7 @@ const CONFIG = require('./config.js');
 require('./routes/index.js')(app);
 require('./routes/city.js')(app);
 require('./routes/customer.js')(app);
+require('./routes/shopCategory.js')(app);
 
 mongoose.connect(CONFIG.MONGO_URL);
 
