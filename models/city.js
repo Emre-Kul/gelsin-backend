@@ -6,7 +6,7 @@ const citySchema = new Schema({
         type: String,
         required: true
     },
-},{ collection: 'City' });
+}, { collection: 'City' });
 
 citySchema.statics = {
     getCitys: function () {
