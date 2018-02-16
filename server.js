@@ -7,6 +7,7 @@ require('./routes/index.js')(app);
 require('./routes/city.js')(app);
 require('./routes/customer.js')(app);
 require('./routes/shopCategory.js')(app);
+require('./routes/product.js')(app);
 
 mongoose.connect(CONFIG.MONGO_URL);
 
