@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
 const citySchema = new Schema({
     'name': {
         type: String,
         required: true
     },
-});
+},{ collection: 'City' });
 
 citySchema.statics = {
     getCitys: function (limit) {

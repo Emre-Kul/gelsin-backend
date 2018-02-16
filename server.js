@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const CONFIG = require('./config.js');
 
 require('./routes/index.js')(app);
+require('./routes/city.js')(app);
 
 mongoose.connect(CONFIG.MONGO_URL);
 
