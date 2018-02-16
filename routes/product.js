@@ -18,10 +18,10 @@ module.exports = function (app) {
     });
     app.get('/product/:_id', (req, res) => {
         product.getProduct(req.params._id).
-            then((cityData) => {
+            then((data) => {
                 res.status(200).json({
                     "status": "success",
-                    "data": cityData
+                    "data": data
                 })
             }).
             catch((err) => {
