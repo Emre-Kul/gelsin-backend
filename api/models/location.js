@@ -10,7 +10,12 @@ const locationSchema = new Schema({
 }, { collection: 'Location', versionKey: false });
 
 locationSchema.statics = {
-    getLocations: function () {
+    getLocations: function (query) {
+        if(typeof query != "undefined" && typeof query['limit'] != "undefined"){
+            query['limit'] = parseInt(query['limit']); 
+            query['page'] = (typeof query['page'] != "undefined") ? parseInt(query['page']) : 0;
+            return this.find({}).limit(query['limit']).skip(query['limit']*query['page']).exec();
+        }
         return this.find({}).exec();
     },
     getLocation: function (_id) {
