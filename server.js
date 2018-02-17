@@ -7,12 +7,12 @@ const CONFIG = require('./config.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-require('./routes/index.js')(app);
-require('./routes/location.js')(app);
-require('./routes/customer.js')(app);
-require('./routes/shopCategory.js')(app);
-require('./routes/product.js')(app);
-require('./routes/shop.js')(app);
+require('./api/routes/index.js')(app);
+require('./api/routes/location.js')(app);
+require('./api/routes/customer.js')(app);
+require('./api/routes/shopCategory.js')(app);
+require('./api/routes/product.js')(app);
+require('./api/routes/shop.js')(app);
 
 mongoose.connect(CONFIG.MONGO_URL);
 
