@@ -26,11 +26,11 @@ module.exports = function (app) {
 
     app.post('/order', (req, res) => {
         let params = req.body;
-        console.log(typeof params.products);
-        console.log(params.products);
         if (typeof params.customer == "undefined" || typeof params.products == "undefined")
             res.status(400).json({ "error": { "message": "Bad Request" } });
         else {
+            if(typeof params.products == 'string')
+                params.products = JSON.parse(params.products);
             let order = new Order({
                 'customer': params.customer,
                 'products': params.products
