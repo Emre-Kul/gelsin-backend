@@ -18,7 +18,7 @@ const productSchema = new Schema({
 
 productSchema.statics = {
     getProducts: function () {
-        return this.find({}).populate('shop').exec();
+        return this.find({}).exec();
     },
     getProduct: function (_id) {
         return this.findOne({ _id: _id }).exec();
