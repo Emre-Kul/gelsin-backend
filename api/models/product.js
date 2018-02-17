@@ -21,7 +21,7 @@ productSchema.statics = {
         return this.find({}).populate('shop').exec();
     },
     getProduct: function (_id) {
-        return this.find({ _id: _id }).exec();
+        return this.findOne({ _id: _id }).exec();
     }
 }
 

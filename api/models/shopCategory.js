@@ -13,7 +13,7 @@ shopCategorySchema.statics = {
         return this.find({}).exec();
     },
     getShopCategory: function (_id) {
-        return this.find({ _id: _id }).exec();
+        return this.findOne({ _id: _id }).exec();
     }
 }
 
