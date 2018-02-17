@@ -6,9 +6,10 @@ const shopSchema = new Schema({
         type: String,
         required: true
     },
-    'category':{
+    'category': {
         type: Schema.Types.ObjectId,
-        ref: 'ShopCategory'
+        ref: 'ShopCategory',
+        required: true
     },
     'longitude': Number,
     'latitude': Number
@@ -16,10 +17,16 @@ const shopSchema = new Schema({
 
 shopSchema.statics = {
     getShops: function () {
-        return this.find({}).populate('ShopCategory').exec();
+        return this.find({}).populate('category').exec();
     },
     getShop: function (_id) {
         return this.find({ _id: _id }).exec();
+    }
+}
+
+shopSchema.methods = {
+    saveShop : function(){
+        return this.save();
     }
 }
 

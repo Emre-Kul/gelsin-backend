@@ -25,4 +25,10 @@ productSchema.statics = {
     }
 }
 
+productSchema.methods = {
+    saveProduct : function(){
+        return this.save();
+    }//control shop id and name
+}
+
 module.exports = mongoose.model('Product', productSchema);
