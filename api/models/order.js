@@ -31,6 +31,9 @@ orderSchema.statics = {
     },
     getOrderByCustomerId: function (customerId) {
         return this.find({ "customer": customerId }).exec();
+    },
+    completeOrder: function (_id) {
+        return this.update({ _id: _id },{$set : {status : 1}});
     }
 }
 
