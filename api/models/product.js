@@ -10,7 +10,7 @@ const productSchema = new Schema({
         type: Number,
         default : 0.0
     },
-    'shop-id':{
+    'shop_id':{
         type : Schema.Types.ObjectId,
         ref : 'Shop'
     }
@@ -28,7 +28,7 @@ productSchema.statics = {
 productSchema.methods = {
     saveProduct : function(){
         return this.save();
-    }//control shop id and name
+    }
 }
 
 module.exports = mongoose.model('Product', productSchema);
