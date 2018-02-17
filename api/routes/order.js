@@ -4,24 +4,29 @@ module.exports = function (app) {
     app.get('/order', (req, res) => {
         Order.getOrders().
             then((data) => res.status(200).json({ "data": data })).
-            catch((err) => res.status(400).json({ "error": err }));
+            catch((err) => res.status(500).json({ "error": err }));
     });
 
     app.get('/order/:_id', (req, res) => {
         Order.getOrder(req.params._id).
             then((data) => res.status(200).json({ "data": data })).
-            catch((err) => res.status(400).json({ "error": err }));
+            catch((err) => res.status(500).json({ "error": err }));
     });
 
     app.post('/order', (req, res) => {
-        let order = new Order({
-            'shop': req.body.shop,
-            'customer': req.body.customer,
-            'products': req.body.products,
-            'status': req.body.status
-        });
-        order.saveOrder().
-            then((data) => res.status(200).json({ "data": data })).
-            catch((err) => res.status(400).json({ "error": err }));
+        let params = req.body;
+        if (typeof params.shop == "undefined" || typeof params.customer == "undefined" || typeof params.products == "undefined" || typeof params.status == "undefined")
+            res.status(400).json({ "error": { "message": "Bad Request" } });
+        else {
+            let order = new Order({
+                'shop': params.shop,
+                'customer': params.customer,
+                'products': params.products,
+                'status': params.status
+            });
+            order.saveOrder().
+                then((data) => res.status(200).json({ "data": data })).
+                catch((err) => res.status(500).json({ "error": err }));
+        }
     });
 }
