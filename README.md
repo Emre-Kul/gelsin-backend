@@ -12,3 +12,61 @@ An application which the customers can give order from nearby shops.
 ## Team Members
 * Emre Kul
 * Ramazan Vapurcu
+
+## Api-Doc
+### Customer
+* GET customer : list the customers
+* POST customer : add new customer
+``` 
+ExampleRequest = {
+    'name': '',
+    'latitude': '',
+    'longitude': ''
+}
+```
+* GET customer/id : get specific customer
+### Order
+* GET order : list the orders
+* POST order : add new order
+```
+ExampleRequest = {
+    'customer': '',
+    'products': ''
+}
+```
+* GET order/id : get specific order
+* GET order/customer/customer_id : get orders of customer
+### Product
+* GET product : list the products
+* POST product : add new produc
+```
+ExampleRequest = {
+    'name': '',
+    'price': '',
+    'shop': ''
+}
+```
+* GET product/id : get specific product
+* GET product/shop/shop_id : get shop's products
+### Shop 
+* GET shop : list the shops
+* POST shop : add new shop
+```
+ExampleRequest = {
+    'name': '',
+    'category': '',
+    'loc': [latitude, longitude]
+}
+```
+* GET shop/id : get specific shop
+* GET shop/near : get near shops
+```
+ExampleRequest = {
+    'longitude':'',
+    'latitude':'',
+    'distance' : ''
+}
+```
+### ShopCategory 
+* GET shopCategory : list the shop categories
+* GET shopCategory/id : get specific category
