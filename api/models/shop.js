@@ -34,7 +34,7 @@ shopSchema.statics = {
                     $maxDistance: distance
                 }
             }
-        }).exec();
+        }).populate('category').exec();
     }
 }
 
