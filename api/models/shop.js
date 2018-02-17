@@ -30,7 +30,7 @@ shopSchema.statics = {
             {
                 $near:
                 {
-                    $geometry: { "type": "Point", "coordinates": [location.longitude,location.latitude] },
+                    $geometry: { "type": "Point", "coordinates": [location.latitude, location.longitude] },
                     $maxDistance: distance
                 }
             }

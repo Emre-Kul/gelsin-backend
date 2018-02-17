@@ -12,7 +12,7 @@ module.exports = function (app) {
         let shop = new Shop({
             'name': req.body.name,
             'category': req.body.category,
-            'loc': [req.body.longitude, req.body.latitude]
+            'loc': [req.body.latitude, req.body.longitude]
         });
         shop.saveShop().
             then((data) => res.status(200).json({ "data": data })).
@@ -33,7 +33,7 @@ module.exports = function (app) {
                 catch((err) => res.status(500).json({ "error": err }));
         }
     });
-    
+
     app.get('/shop/:_id', (req, res) => {
         Shop.getShop(req.params._id).
             then((data) => res.status(200).json({ "data": data })).
