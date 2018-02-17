@@ -13,6 +13,7 @@ require('./api/routes/customer.js')(app);
 require('./api/routes/shopCategory.js')(app);
 require('./api/routes/product.js')(app);
 require('./api/routes/shop.js')(app);
+require('./api/routes/order.js')(app);
 
 mongoose.connect(CONFIG.MONGO_URL);
 
