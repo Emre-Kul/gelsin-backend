@@ -6,8 +6,8 @@ const customerSchema = new Schema({
         type: String,
         required: true
     },
-    'long': Number,
-    'lang': Number
+    'longitude': Number,
+    'latitude': Number
 }, { collection: 'Customer' });//Number will changed to float(double) with NPM package
 
 customerSchema.statics = {

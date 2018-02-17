@@ -10,8 +10,8 @@ const shopSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'ShopCategory'
     },
-    'long' : Number,
-    'lat' : Number
+    'longitude': Number,
+    'latitude': Number
 }, { collection: 'Shop' });
 
 shopSchema.statics = {
