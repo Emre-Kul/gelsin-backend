@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const citySchema = new Schema({
     'name': {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 }, { collection: 'City' });
 
@@ -14,6 +15,12 @@ citySchema.statics = {
     },
     getCity: function (_id) {
         return this.find({ _id: _id }).exec();
+    }
+}
+
+citySchema.methods = {
+    saveCity: function () {
+        return this.save();
     }
 }
 

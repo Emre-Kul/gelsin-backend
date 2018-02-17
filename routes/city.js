@@ -1,7 +1,7 @@
-const city = require('../models/city.js');
+const City = require('../models/city.js');
 module.exports = function (app) {
     app.get('/city', (req, res) => {
-        city.getCitys().
+        City.getCitys().
             then((data) => {
                 res.status(200).json({
                     "status": "success",
@@ -16,8 +16,29 @@ module.exports = function (app) {
             });
 
     });
+
+    app.get('/city/insert/:cityName', (req, res) => {
+        let city = new City({
+            'name': req.params.cityName
+        });
+      
+        city.saveCity().
+            then(data => {
+                res.status(200).json({
+                    "status": "success",
+                    "data": data
+                });
+            }).
+            catch(err => {
+                res.status(500).json({
+                    "status": "error",
+                    "error": err
+                });
+            })
+    });
+
     app.get('/city/:_id', (req, res) => {
-        city.getCity(req.params._id).
+        City.getCity(req.params._id).
             then((data) => {
                 res.status(200).json({
                     "status": "success",
@@ -31,4 +52,6 @@ module.exports = function (app) {
                 });
             })
     });
+
+
 }
