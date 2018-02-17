@@ -6,15 +6,15 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    'price':{
+    'price': {
         type: Number,
-        default : 0.0
+        default: 0.0
     },
-    'shop':{
-        type : Schema.Types.ObjectId,
-        ref : 'Shop'
+    'shop': {
+        type: Schema.Types.ObjectId,
+        ref: 'Shop'
     }
-}, { collection: 'Product' });
+}, { collection: 'Product', versionKey: false });
 
 productSchema.statics = {
     getProducts: function () {
@@ -26,7 +26,7 @@ productSchema.statics = {
 }
 
 productSchema.methods = {
-    saveProduct : function(){
+    saveProduct: function () {
         return this.save();
     }
 }

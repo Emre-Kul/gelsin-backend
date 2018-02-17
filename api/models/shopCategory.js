@@ -6,7 +6,7 @@ const shopCategorySchema = new Schema({
         type: String,
         required: true
     },
-}, { collection: 'ShopCategory' });
+}, { collection: 'ShopCategory', versionKey: false });
 
 shopCategorySchema.statics = {
     getShopCategorys: function () {

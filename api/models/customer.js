@@ -8,7 +8,7 @@ const customerSchema = new Schema({
     },
     'longitude': Number,
     'latitude': Number
-}, { collection: 'Customer' });//Number will changed to float(double) with NPM package
+}, { collection: 'Customer', versionKey: false });//Number will changed to float(double) with NPM package
 
 customerSchema.statics = {
     getCustomers: function () {

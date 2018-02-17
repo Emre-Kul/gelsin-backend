@@ -13,7 +13,7 @@ const shopSchema = new Schema({
     },
     'longitude': Number,
     'latitude': Number
-}, { collection: 'Shop' });
+}, { collection: 'Shop', versionKey: false });
 
 shopSchema.statics = {
     getShops: function () {
@@ -25,7 +25,7 @@ shopSchema.statics = {
 }
 
 shopSchema.methods = {
-    saveShop : function(){
+    saveShop: function () {
         return this.save();
     }
 }

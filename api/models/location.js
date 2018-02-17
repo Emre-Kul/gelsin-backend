@@ -7,7 +7,7 @@ const locationSchema = new Schema({
         required: true,
         unique: true
     },
-}, { collection: 'Location' });
+}, { collection: 'Location', versionKey: false });
 
 locationSchema.statics = {
     getLocations: function () {
