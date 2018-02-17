@@ -30,8 +30,9 @@ ExampleRequest = {
 * POST order : add new order
 ```
 ExampleRequest = {
-    'customer': '',
-    'products': ''
+    'user':'user_id'
+    'customer': 'customer_id',
+    'products': '[product_id]'
 }
 ```
 * GET order/id : get specific order
@@ -43,7 +44,7 @@ ExampleRequest = {
 ExampleRequest = {
     'name': '',
     'price': '',
-    'shop': ''
+    'shop': 'shop_id'
 }
 ```
 * GET product/id : get specific product
