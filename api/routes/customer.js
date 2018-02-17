@@ -7,7 +7,8 @@ module.exports = function (app) {
         else {
             let customer = new Customer({
                 'name': req.body.name,
-                'loc': [req.body.latitude, req.body.longitude]
+                'latitude': req.body.latitude,
+                'longitude' : req.body.longitude
             });
             customer.saveCustomer().
                 then((data) => res.status(200).json({ "data": data })).
