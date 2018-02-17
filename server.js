@@ -8,7 +8,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 require('./api/routes/index.js')(app);
-require('./api/routes/location.js')(app);
 require('./api/routes/customer.js')(app);
 require('./api/routes/shopCategory.js')(app);
 require('./api/routes/product.js')(app);
