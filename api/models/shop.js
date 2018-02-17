@@ -19,22 +19,97 @@ const shopSchema = new Schema({
 
 shopSchema.statics = {
     getShops: function () {
-        return this.find({}).populate('category').sort({ name: 1 }).populate('category').exec();
-    },
-    getShop: function (_id) {
-        return this.findOne({ _id: _id }).populate('category').exec();
-    },
-    findNearShops: function (location, distance) {
-        return this.where({
-            'loc':
+        return this.aggregate([
             {
-                $near:
-                {
-                    $geometry: { "type": "Point", "coordinates": [location.latitude, location.longitude] },
-                    $maxDistance: distance
+                "$lookup": {
+                    "from": "ShopCategory",
+                    "localField": "category",
+                    "foreignField": "_id",
+                    "as": "category"
+                }
+            },
+            { "$unwind": "$category" },
+            {
+                "$project": {
+                    "name": "$name",
+                    "category_name": "$category.name",
+                    "category_id": "$category._id",
+                    "latitude": {
+                        "$arrayElemAt": ["$loc", 0]
+                    },
+                    "longitude": {
+                        "$arrayElemAt": ["$loc", 1]
+                    }
                 }
             }
-        }).populate('category').exec();
+        ]).sort({ name: -1 }).exec();
+    },
+    getShop: function (shop_id) {
+        return this.aggregate([
+            {
+                "$match": {
+                    "_id": mongoose.Types.ObjectId(shop_id)
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "ShopCategory",
+                    "localField": "category",
+                    "foreignField": "_id",
+                    "as": "category"
+                }
+            },
+            { "$unwind": "$category" },
+            {
+                "$project": {
+                    "name": "$name",
+                    "category_name": "$category.name",
+                    "category_id": "$category._id",
+                    "latitude": {
+                        "$arrayElemAt": ["$loc", 0]
+                    },
+                    "longitude": {
+                        "$arrayElemAt": ["$loc", 1]
+                    }
+                }
+            }
+        ]).exec();
+    },
+    findNearShops: function (location, distance) {
+        return this.aggregate([
+            {
+                "$geoNear": {
+                    "near": { "type": "Point", "coordinates": [parseFloat(location.latitude) , parseFloat(location.longitude)] },
+                    "distanceField": "dist.calculated",
+                    "maxDistance": parseInt(distance),
+                    "includeLocs": "dist.loc",
+                    "spherical": true
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "ShopCategory",
+                    "localField": "category",
+                    "foreignField": "_id",
+                    "as": "category"
+                }
+            },
+            { "$unwind": "$category" },
+            {
+                "$project": {
+                    "name": "$name",
+                    "category_name": "$category.name",
+                    "category_id": "$category._id",
+                    "latitude": {
+                        "$arrayElemAt": ["$loc", 0]
+                    },
+                    "longitude": {
+                        "$arrayElemAt": ["$loc", 1]
+                    },
+                    "distance" : "$dist.calculated"
+                }
+            }
+        ]).exec();
     }
 }
 
