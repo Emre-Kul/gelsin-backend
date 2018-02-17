@@ -11,8 +11,10 @@ const shopSchema = new Schema({
         ref: 'ShopCategory',
         required: true
     },
-    'longitude': Number,
-    'latitude': Number
+    'loc': {
+        type: [Number],
+        index: '2dsphere'
+    }
 }, { collection: 'Shop', versionKey: false });
 
 shopSchema.statics = {
@@ -21,6 +23,18 @@ shopSchema.statics = {
     },
     getShop: function (_id) {
         return this.findOne({ _id: _id }).exec();
+    },
+    findNearShops: function (location, distance) {
+        return this.where({
+            'loc':
+            {
+                $near:
+                {
+                    $geometry: { "type": "Point", "coordinates": [location.longitude,location.latitude] },
+                    $maxDistance: distance
+                }
+            }
+        }).exec();
     }
 }
 
@@ -29,5 +43,6 @@ shopSchema.methods = {
         return this.save();
     }
 }
+
 
 module.exports = mongoose.model('Shop', shopSchema);
