@@ -18,7 +18,7 @@ module.exports = function (app) {
     });
     app.post('/city/insert/', (req, res) => {
         let city = new City({
-            'name': req.body.cityName
+            'name': req.body.name
         });
         city.saveCity().
             then(data => {
