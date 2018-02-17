@@ -28,7 +28,7 @@ const orderSchema = new Schema({
 
 orderSchema.statics = {
     getOrders: function () {
-        return this.find({}).exec();
+        return this.find({}).populate('customer').populate('shop').populate('products').exec();
     },
     getOrder: function (_id) {
         return this.findOne({ _id: _id }).exec();
