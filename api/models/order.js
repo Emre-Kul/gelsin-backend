@@ -6,6 +6,10 @@ const orderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Customer'
     },
+    'shop': {
+        type: Schema.Types.ObjectId,
+        ref: 'Shop'
+    },
     'products': [
         {
             type: Schema.Types.ObjectId,
@@ -31,6 +35,9 @@ orderSchema.statics = {
     },
     getOrderByCustomerId: function (customerId) {
         return this.find({ "customer": customerId }).sort({ date: -1 }).populate('customer').populate('shop').populate('products').exec();
+    },
+    getOrderByShopId: function (shopId) {
+        return this.find({ "shop": shopId }).sort({ date: -1 }).populate('customer').populate('shop').populate('products').exec();
     },
     completeOrder: function (_id) {
         return this.update({ _id: _id }, { $set: { status: 1 } });
