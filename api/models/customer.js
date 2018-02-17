@@ -6,8 +6,10 @@ const customerSchema = new Schema({
         type: String,
         required: true
     },
-    'longitude': Number,
-    'latitude': Number
+    'loc': {
+        type: [Number],
+        index: '2dsphere'
+    }
 }, { collection: 'Customer', versionKey: false });//Number will changed to float(double) with NPM package
 
 customerSchema.statics = {
