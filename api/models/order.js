@@ -27,10 +27,10 @@ orderSchema.statics = {
         return this.find({}).populate('customer').populate('shop').populate('products').exec();
     },
     getOrder: function (_id) {
-        return this.findOne({ _id: _id }).exec();
+        return this.findOne({ _id: _id }).populate('customer').populate('shop').populate('products').exec();
     },
     getOrderByCustomerId: function (customerId) {
-        return this.find({ "customer": customerId }).exec();
+        return this.find({ "customer": customerId }).populate('customer').populate('shop').populate('products').exec();
     },
     completeOrder: function (_id) {
         return this.update({ _id: _id },{$set : {status : 1}});
