@@ -28,6 +28,9 @@ orderSchema.statics = {
     },
     getOrder: function (_id) {
         return this.findOne({ _id: _id }).exec();
+    },
+    getOrderByCustomerId: function (customerId) {
+        return this.find({ "customer": customerId }).exec();
     }
 }
 
