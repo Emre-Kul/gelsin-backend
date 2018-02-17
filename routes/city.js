@@ -16,12 +16,10 @@ module.exports = function (app) {
             });
 
     });
-
-    app.get('/city/insert/:cityName', (req, res) => {
+    app.post('/city/insert/', (req, res) => {
         let city = new City({
-            'name': req.params.cityName
+            'name': req.body.cityName
         });
-      
         city.saveCity().
             then(data => {
                 res.status(200).json({
@@ -34,9 +32,8 @@ module.exports = function (app) {
                     "status": "error",
                     "error": err
                 });
-            })
+            });
     });
-
     app.get('/city/:_id', (req, res) => {
         City.getCity(req.params._id).
             then((data) => {
@@ -50,7 +47,7 @@ module.exports = function (app) {
                     "status": "error",
                     "error": err
                 });
-            })
+            });
     });
 
 
