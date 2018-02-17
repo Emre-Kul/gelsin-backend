@@ -10,7 +10,7 @@ const productSchema = new Schema({
         type: Number,
         default : 0.0
     },
-    'shop_id':{
+    'shop':{
         type : Schema.Types.ObjectId,
         ref : 'Shop'
     }
@@ -18,7 +18,7 @@ const productSchema = new Schema({
 
 productSchema.statics = {
     getProducts: function () {
-        return this.find({}).exec();
+        return this.find({}).populate('shop').exec();
     },
     getProduct: function (_id) {
         return this.find({ _id: _id }).exec();

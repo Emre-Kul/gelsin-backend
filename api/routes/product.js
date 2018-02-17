@@ -19,8 +19,8 @@ module.exports = function (app) {
     app.post('/product', (req, res) => {
         let product = new Product({
             'name': req.body.name,
-            'price': req.body.name,
-            'shop_id': req.body.shop_id
+            'price': req.body.price,
+            'shop': req.body.shop
         });
         product.saveProduct().then((data) => {
             res.status(200).json({
