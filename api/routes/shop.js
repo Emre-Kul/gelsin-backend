@@ -9,6 +9,9 @@ module.exports = function (app) {
                     obj = obj.toObject();
                     obj.category_name = obj.category.name;
                     obj.category_id = obj.category._id;
+                    obj.latitude = obj.loc[0];
+                    obj.longitude = obj.loc[1];
+                    delete obj.loc;
                     delete obj.category;
                     newData.push(obj);
                 });
@@ -44,6 +47,9 @@ module.exports = function (app) {
                         obj = obj.toObject();
                         obj.category_name = obj.category.name;
                         obj.category_id = obj.category._id;
+                        obj.latitude = obj.loc[0];
+                        obj.longitude = obj.loc[1];
+                        delete obj.loc;
                         delete obj.category;
                         newData.push(obj);
                     });
@@ -60,6 +66,9 @@ module.exports = function (app) {
                 data = data.toObject();
                 data.category_name = data.category.name;
                 data.category_id = data.category._id;
+                data.latitude = data.loc[0];
+                data.longitude = data.loc[1];
+                delete data.loc;
                 delete data.category;
 
                 res.status(200).json({ "data": data })
