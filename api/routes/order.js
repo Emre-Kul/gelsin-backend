@@ -15,14 +15,12 @@ module.exports = function (app) {
 
     app.post('/order', (req, res) => {
         let params = req.body;
-        if (typeof params.shop == "undefined" || typeof params.customer == "undefined" || typeof params.products == "undefined" || typeof params.status == "undefined")
+        if (typeof params.customer == "undefined" || typeof params.products == "undefined")
             res.status(400).json({ "error": { "message": "Bad Request" } });
         else {
             let order = new Order({
-                'shop': params.shop,
                 'customer': params.customer,
-                'products': params.products,
-                'status': params.status
+                'products': params.products
             });
             order.saveOrder().
                 then((data) => res.status(200).json({ "data": data })).
