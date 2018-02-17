@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const customerSchema = new Schema({
     'name': {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     'loc': {
         type: [Number],
@@ -20,5 +21,9 @@ customerSchema.statics = {
         return this.findOne({ _id: _id }).exec();
     }
 }
-
+customerSchema.methods = {
+    saveCustomer: function () {
+        return this.save();
+    }
+}
 module.exports = mongoose.model('Customer', customerSchema);
