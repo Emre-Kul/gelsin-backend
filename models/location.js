@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const citySchema = new Schema({
+const locationSchema = new Schema({
     'name': {
         type: String,
         required: true,
         unique: true
     },
-}, { collection: 'City' });
+}, { collection: 'Location' });
 
-citySchema.statics = {
-    getCitys: function () {
+locationSchema.statics = {
+    getLocations: function () {
         return this.find({}).exec();
     },
-    getCity: function (_id) {
+    getLocation: function (_id) {
         return this.find({ _id: _id }).exec();
     }
 }
 
-citySchema.methods = {
-    saveCity: function () {
+locationSchema.methods = {
+    saveLocation: function () {
         return this.save();
     }
 }
 
-module.exports = mongoose.model('City', citySchema);
+module.exports = mongoose.model('Location', locationSchema);

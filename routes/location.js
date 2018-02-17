@@ -1,7 +1,7 @@
-const City = require('../models/city.js');
+const Location = require('../models/location.js');
 module.exports = function (app) {
-    app.get('/city', (req, res) => {
-        City.getCitys().
+    app.get('/location', (req, res) => {
+        Location.getLocations().
             then((data) => {
                 res.status(200).json({
                     "status": "success",
@@ -16,11 +16,11 @@ module.exports = function (app) {
             });
 
     });
-    app.post('/city/insert/', (req, res) => {
-        let city = new City({
+    app.post('/location/insert/', (req, res) => {
+        let location = new Location({
             'name': req.body.name
         });
-        city.saveCity().
+        location.saveLocation().
             then(data => {
                 res.status(200).json({
                     "status": "success",
@@ -34,8 +34,8 @@ module.exports = function (app) {
                 });
             });
     });
-    app.get('/city/:_id', (req, res) => {
-        City.getCity(req.params._id).
+    app.get('/location/:_id', (req, res) => {
+        Location.getLocation(req.params._id).
             then((data) => {
                 res.status(200).json({
                     "status": "success",
