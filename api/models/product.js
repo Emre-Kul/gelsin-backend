@@ -23,8 +23,14 @@ productSchema.statics = {
     getProduct: function (_id) {
         return this.findOne({ _id: _id }).exec();
     },
-    getProductsOfShop : function(shopId){
-        return this.find({"shop" : shopId}).exec();
+    getProductsOfShop: function (shopId) {
+        return this.find({ "shop": shopId }).exec();
+    },
+    removeProduct: function (_id) {
+        return this.findByIdAndRemove(_id).exec();
+    },
+    editProduct: function (_id, refreshedProduct) {
+        return this.findByIdAndUpdate(_id, refreshedProduct).exec();
     }
 }
 

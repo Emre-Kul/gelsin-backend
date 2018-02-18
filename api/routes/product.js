@@ -29,6 +29,18 @@ module.exports = function (app) {
             catch((err) => res.status(500).json({ "error": err }));
     });
 
+    app.get('/product/remove/:_id', (req, res) => {
+        Product.removeProduct(req.params._id).
+            then((data) => res.status(200).json({ "data": data })).
+            catch((err) => res.status(500).json({ "error": err }));
+    });
+
+    app.post('/product/edit/:_id', (req, res) => {
+        Product.editProduct(req.params._id, req.body).
+            then((data) => res.status(200).json({ "data": data })).
+            catch((err) => res.status(500).json({ "error": err }));
+    });
+
     app.get('/product/:_id', (req, res) => {
         Product.getProduct(req.params._id).
             then((data) => res.status(200).json({ "data": data })).
