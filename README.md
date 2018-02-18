@@ -49,6 +49,9 @@ ExampleRequest = {
 ```
 * GET product/id : get specific product
 * GET product/shop/shop_id : get shop's products
+* GET product/remove/product_id : remove product
+* POST product/edit/product_id : edit product (post values for editing name,price,shop etc...)
+* GET product/search/value : search product by name
 ### Shop 
 * GET shop : list the shops
 * POST shop : add new shop

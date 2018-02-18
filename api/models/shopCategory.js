@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const CONFIG = require('../../config.js');
 
 const shopCategorySchema = new Schema({
     'name': {
@@ -10,7 +11,7 @@ const shopCategorySchema = new Schema({
 
 shopCategorySchema.statics = {
     getShopCategorys: function () {
-        return this.find({}).exec();
+        return this.find({}).limit(CONFIG.MONGO_DEFAULT_LIMIT).exec();
     },
     getShopCategory: function (_id) {
         return this.findOne({ _id: _id }).exec();

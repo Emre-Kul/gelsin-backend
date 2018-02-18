@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const CONFIG = require('../../config.js');
 
 const shopSchema = new Schema({
     'name': {
@@ -42,7 +43,7 @@ shopSchema.statics = {
                     }
                 }
             }
-        ]).sort({ name: -1 }).exec();
+        ]).sort({ name: -1 }).limit(CONFIG.MONGO_DEFAULT_LIMIT).exec();
     },
     getShop: function (shop_id) {
         return this.aggregate([
@@ -109,7 +110,7 @@ shopSchema.statics = {
                     "distance" : "$dist.calculated"
                 }
             }
-        ]).exec();
+        ]).limit(CONFIG.MONGO_DEFAULT_LIMIT).exec();
     }
 }
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const CONFIG = require('../../config.js');
 
 const orderSchema = new Schema({
     'customer': {
@@ -28,7 +29,7 @@ const orderSchema = new Schema({
 
 orderSchema.statics = {
     getOrders: function () {
-        return this.find({}).populate('customer').sort({ date: -1 }).populate('shop').populate('products').exec();
+        return this.find({}).populate('customer').limit(CONFIG.MONGO_DEFAULT_LIMIT).sort({ date: -1 }).populate('shop').populate('products').exec();
     },
     getOrder: function (_id) {
         return this.findOne({ _id: _id }).populate('customer').populate('shop').populate('products').exec();
