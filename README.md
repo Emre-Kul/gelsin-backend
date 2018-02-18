@@ -56,7 +56,8 @@ ExampleRequest = {
 ExampleRequest = {
     'name': '',
     'category': '',
-    'loc': [latitude, longitude]
+    'longitude': '',
+    'latitude' : ''
 }
 ```
 * GET shop/id : get specific shop
