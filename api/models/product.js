@@ -31,6 +31,9 @@ productSchema.statics = {
     },
     editProduct: function (_id, refreshedProduct) {
         return this.findByIdAndUpdate(_id, refreshedProduct).exec();
+    },
+    searchProductByName: function(search_name){
+        return this.find({"name" : {"$regex" : search_name, "$options" : "i"} }).exec();
     }
 }
 
